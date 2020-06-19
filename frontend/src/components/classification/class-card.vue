@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import {colorMap} from '../../shared'
+import {colorMap} from "../../shared"
     export default {
         name: 'classCard',
         props: {

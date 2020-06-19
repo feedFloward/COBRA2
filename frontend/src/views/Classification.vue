@@ -20,6 +20,8 @@
 <script>
 import inputspaceCanvas from "@/components/classification/inputspace-canvas";
 import classDefinition from "@/components/classification/class-definition";
+import { mapState } from 'vuex';
+
 export default {
   name: "Classification",
   components: {
@@ -28,15 +30,20 @@ export default {
   },
   data() {
     return {
-      classes: []
     };
   },
   methods: {
     addClass() {
       if (this.classes.length < 5) {
-        this.classes.push(1);
+        this.$store.commit('addClass')
+
       }
     }
-  }
+  },
+  computed: {
+    ...mapState({
+      classes: state => state.classes
+    })
+  },
 };
 </script>
