@@ -1,39 +1,58 @@
 <template>
-    <div>
-        <v-item v-slot:default="{ active, toggle }">
+    <v-item>
         <v-card
-        width="100"
-        height="70"
-        :color= "color"
-        class="lighten-5"
-        @click="toggle"
+        :active="isActive"
+        width="150"
+        height="150"
+        :color="color"
+        class="text-center ma-2"
+        :class="isActive? 'darken-5' : 'lighten-5'"
+        :elevation="isActive? 24 : 3"
         >
-            <v-card-text>
-                <p>class {{ classIndex }}</p>
-                <p>#samples</p>
-                <p v-if="active">aktiv</p>
-            </v-card-text>
+          <v-card-text @click="selectClass">
+            <p>class {{ classIndex }}</p>
+            <p>#samples</p>
+          </v-card-text>
+          <v-card-actions>
+            <v-btn small class="red white--text" @click="removeClass">delete</v-btn>
+          </v-card-actions>
         </v-card>
-        </v-item>
-    </div>
+    </v-item>
 </template>
 
 <script>
-import {colorMap} from "../../shared"
-    export default {
-        name: 'classCard',
-        props: {
-            classIndex: {
-                type: Number,
-            },
-        },
-        data() {
-            return {
-                color: undefined
-            }
-        },
-        mounted () {
-            this.color = colorMap[this.classIndex];
-        },
+export default {
+  name: "classCard",
+  props: {
+    classIndex: {
+      type: Number
+    },
+    color: {
+        type: String
     }
+  },
+  data() {
+    return {
+    };
+  },
+  methods: {
+    removeClass() {
+      this.$store.commit("removeClass", this.classIndex);
+    },
+    selectClass() {
+        this.$store.commit("selectClass", this.classIndex-1)
+    }
+  },
+  mounted() {
+      this.selectClass()
+  },
+  destroyed () {
+      this.$store.state.currentClass = {};
+  },
+  computed: {
+      isActive() {
+          return this.$store.getters.getCurrentClassIndex == this.classIndex ? true : false
+      }
+  },
+};
 </script>

@@ -1,6 +1,8 @@
 <template>
   <v-app>
-    <v-app-bar app></v-app-bar>
+    <v-app-bar app>
+      <router-link to="/">Home</router-link>
+    </v-app-bar>
     <v-main>
       <router-view></router-view>
     </v-main>

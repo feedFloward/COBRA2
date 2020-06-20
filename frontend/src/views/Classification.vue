@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     addClass() {
-      if (this.classes.length < 5) {
+      if (this.classes.length < 6) {
         this.$store.commit('addClass')
 
       }

@@ -1,12 +1,12 @@
 <template>
     <div>
-        <v-item-group active-class="outlined">
-            <v-row>
+        <v-item-group> <!-- multiple="false" mandatory -->
+            <v-row wrap>
                 <classCard
-                v-for="i in classes.length"
-                :key="i"
-                :classIndex="i"
-                class="ml-2 mt-2"
+                v-for="cls in classes"
+                :key="cls.index"
+                :classIndex="cls.index"
+                :color="cls.color"
                 ></classCard>
             </v-row>
         </v-item-group>
