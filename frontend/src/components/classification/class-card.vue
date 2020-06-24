@@ -9,9 +9,12 @@
         :class="isActive? 'darken-5' : 'lighten-5'"
         :elevation="isActive? 24 : 3"
         >
-          <v-card-text @click="selectClass">
+          <v-card-text
+          @click="selectClass"
+          :class="isActive? 'white--text': ''"
+          >
             <p>class {{ classIndex }}</p>
-            <p>#samples</p>
+            <p>{{ numSamples }} samples</p>
           </v-card-text>
           <v-card-actions>
             <v-btn small class="red white--text" @click="removeClass">delete</v-btn>
@@ -52,6 +55,9 @@ export default {
   computed: {
       isActive() {
           return this.$store.getters.getCurrentClassIndex == this.classIndex ? true : false
+      },
+      numSamples() {
+        return this.$store.state.classes[this.classIndex - 1].points.length
       }
   },
 };

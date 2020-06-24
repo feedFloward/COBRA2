@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {classObject} from '@/types/classification'
+import { classObject, clfObject } from '@/types/classification'
 import { colorMap } from "@/shared";
+import { classifierData } from '@/shared/classification'
 
 
 Vue.use(Vuex)
@@ -11,9 +12,18 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     classes: Array<classObject>(),
-    currentClass: {} as classObject
+    currentClass: {} as classObject,
+    classifiers: Array<clfObject>(),
+    selectedClassifier: {} as clfObject | undefined,
   },
   mutations: {
+    loadClassifierData(state) {
+      state.classifiers = classifierData.classifiers
+    },
+    selectClassifier(state, clfVal) {
+      // state.selectedOptimizer = clf
+      state.selectedClassifier = state.classifiers.find(clf => clf.value === clfVal)
+    },
     addClass (state) {
       state.classes.push({
         index: state.classes.length+1,
@@ -31,6 +41,9 @@ export default new Vuex.Store({
     },
     addPointsToClass(state, pointTuple) {
       state.currentClass.points.push(pointTuple)
+    },
+    removeAllClasses(state) {
+      state.classes = []
     }
   },
   actions: {
@@ -40,6 +53,9 @@ export default new Vuex.Store({
   getters: {
     getCurrentClassIndex(state) {
       return state.currentClass.index
+    },
+    getClassifierData(state) {
+      return state
     }
   }
 })
