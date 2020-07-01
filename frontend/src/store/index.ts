@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { classObject, clfObject } from '@/types/classification'
 import { colorMap } from "@/shared";
-import { classifierData } from '@/shared/classification'
+import { classifierData, inputspace } from '@/shared/classification'
 
 
 Vue.use(Vuex)
@@ -15,6 +15,7 @@ export default new Vuex.Store({
     currentClass: {} as classObject,
     classifiers: Array<clfObject>(),
     selectedClassifier: {} as clfObject | undefined,
+    inputspace : inputspace,
   },
   mutations: {
     loadClassifierData(state) {

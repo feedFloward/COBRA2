@@ -16,7 +16,9 @@
         <v-col cols="2"><!--classifier definition here -->
           <classifierSelection></classifierSelection>
         </v-col>
-        <v-col></v-col>
+        <v-col>
+          <svmOptions v-if="selectedClassifier.value == 'svm'"></svmOptions>
+        </v-col>
         <v-col>
           <v-btn @click="train" color="green white--text">train!</v-btn>
         </v-col>
@@ -29,6 +31,7 @@
 import inputspaceCanvas from "@/components/classification/inputspace-canvas";
 import classDefinition from "@/components/classification/class-definition";
 import classifierSelection from "@/components/classification/classifier-selection";
+import svmOptions from "@/components/classification/svm-options";
 import { mapState } from 'vuex';
 import { data } from '@/shared';
 
@@ -38,6 +41,7 @@ export default {
     inputspaceCanvas,
     classDefinition,
     classifierSelection,
+    svmOptions,
   },
   data() {
     return {
@@ -45,13 +49,15 @@ export default {
   },
 methods: {
   async train() {
-    let answer = await data.trainRequest(this.classes)
+    let answer = await data.trainRequest(this.classes, this.inputspace, this.selectedClassifier)
     console.log(answer)
   }
 },
   computed: {
     ...mapState({
-      classes: state => state.classes
+      classes: state => state.classes,
+      selectedClassifier: state => state.selectedClassifier,
+      inputspace: state => state.inputspace,
     })
   },
 };

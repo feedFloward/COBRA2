@@ -33,8 +33,8 @@ export default {
 
   data() {
     return {
-      inputspaceHeight: 500,
-      inputspaceWidth: 700,
+      inputspaceHeight: undefined,
+      inputspaceWidth: undefined,
       drawMode: false,
       variance: 7,
       varianceList: [
@@ -91,6 +91,8 @@ export default {
     }
   },
   mounted() {
+    this.inputspaceHeight = this.$store.state.inputspace.inputspaceHeight;
+    this.inputspaceWidth = this.$store.state.inputspace.inputspaceWidth;
     this.context = this.$refs.inputspace_canvas.getContext("2d");
     this.$refs.inputspace_canvas.width = this.inputspaceWidth;
     this.$refs.inputspace_canvas.height = this.inputspaceHeight;
