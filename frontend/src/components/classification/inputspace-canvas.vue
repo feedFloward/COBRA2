@@ -94,6 +94,7 @@ export default {
     },
 
     drawPredictions() {
+      this.redrawCanvas();
       this.context.globalAlpha = 0.1;
       let predictions = this.$store.state.clfResponse.Z
       for (let i= 0; i < predictions.length; i++) {
