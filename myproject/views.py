@@ -10,4 +10,4 @@ def classification_request(request):
         
 
         
-    return HttpResponse(json.dumps({'answer': 'hi ich komme aus dem backend'}), content_type='application/json')
+    return HttpResponse(handler, content_type='application/json')

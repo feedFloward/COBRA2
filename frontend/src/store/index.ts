@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { classObject, clfObject } from '@/types/classification'
+import { ClfState, classObject, clfObject, ClfResponse } from '@/types/classification'
 import { colorMap } from "@/shared";
 import { classifierData, inputspace } from '@/shared/classification'
 
@@ -8,14 +8,25 @@ import { classifierData, inputspace } from '@/shared/classification'
 Vue.use(Vuex)
 // Vue.config.devtools = true
 
+// const state : ClfState = {
+//   classes: [],
+//   currentClass: {},
+//   classifiers: [],
+//   selectedClassifier: undefined,
+//   inputspace: inputspace,
+//   modelSpecData: classifierData.modelSpecData
+// }
 
 export default new Vuex.Store({
+  // hier für state noch das interface einarbeiten
   state: {
     classes: Array<classObject>(),
     currentClass: {} as classObject,
     classifiers: Array<clfObject>(),
     selectedClassifier: {} as clfObject | undefined,
     inputspace : inputspace,
+    modelSpecData: classifierData.modelSpecData,
+    clfResponse: {} as ClfResponse
   },
   mutations: {
     loadClassifierData(state) {
@@ -41,10 +52,13 @@ export default new Vuex.Store({
       state.currentClass = state.classes[idx]
     },
     addPointsToClass(state, pointTuple) {
-      state.currentClass.points.push(pointTuple)
+      state.currentClass!.points.push(pointTuple)
     },
     removeAllClasses(state) {
       state.classes = []
+    },
+    chooseKernel(state, kernel) {
+      state.selectedClassifier!.specs.kernel = kernel
     }
   },
   actions: {
@@ -53,7 +67,7 @@ export default new Vuex.Store({
   },
   getters: {
     getCurrentClassIndex(state) {
-      return state.currentClass.index
+      return state.currentClass!.index
     },
     getClassifierData(state) {
       return state

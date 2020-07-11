@@ -6,6 +6,9 @@ const classifiers = [
     {
         text: 'svm',
         value: 'svm',
+        specs: {
+            kernel: undefined
+        }
     },
     {
         text: 'neural net',
@@ -13,8 +16,15 @@ const classifiers = [
     },
 ]
 
+const svmSpecs = {
+    kernel: ['rbf', 'linear']
+}
 
+const modelSpecData = {
+    svmSpecs
+}
 
 export const classifierData = {
     classifiers,
+    modelSpecData
 }

@@ -1,5 +1,10 @@
-def select_model(*args, **kwargs):
+from . import SvmWrapper
+
+def select_model(model, *args, **kwargs):
     '''
     returns a classifier
     '''
-    pass
+    switcher = {
+        'svm': SvmWrapper(*args, **kwargs)
+    }
+    return switcher.get(model['value'])

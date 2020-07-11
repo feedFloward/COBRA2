@@ -27,6 +27,8 @@
 
 <script>
 import * as tf from "@tensorflow/tfjs";
+import { colorMap } from '@/shared';
+
 
 export default {
   name: "inputspaceCanvas",
@@ -49,6 +51,7 @@ export default {
   methods: {
     brushPoints(e) {
       if (
+        // zweite bedingung von hier als getter in helper definieren
         this.drawMode &&
         Object.keys(this.$store.state.currentClass).length > 0
       ) {
@@ -88,6 +91,18 @@ export default {
 
     clearClasses() {
         this.$store.commit('removeAllClasses')
+    },
+
+    drawPredictions() {
+      this.context.globalAlpha = 0.1;
+      let predictions = this.$store.state.clfResponse.Z
+      for (let i= 0; i < predictions.length; i++) {
+        for (let j= 0; j < predictions[i].length; j++) {
+          let prediction = predictions[i][j];
+          let color = colorMap[prediction]
+          this.drawSinglePoint(j, i, 1, color)
+        }
+      }
     }
   },
   mounted() {

@@ -7,7 +7,7 @@
         </v-col>
         <v-col>
           <v-row>
-            <inputspaceCanvas></inputspaceCanvas>
+            <inputspaceCanvas ref="inputspaceCanvas"></inputspaceCanvas>
           </v-row>
         </v-col>
         <v-col></v-col>
@@ -49,8 +49,10 @@ export default {
   },
 methods: {
   async train() {
+    //wie zeichnen?
     let answer = await data.trainRequest(this.classes, this.inputspace, this.selectedClassifier)
-    console.log(answer)
+    this.$store.state.clfResponse = answer
+    this.$refs.inputspaceCanvas.drawPredictions()
   }
 },
   computed: {
