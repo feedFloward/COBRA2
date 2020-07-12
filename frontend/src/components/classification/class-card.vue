@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import { inputspaceComputed } from '@/store/helpers'
+
 export default {
   name: "classCard",
   props: {
@@ -53,8 +55,9 @@ export default {
       this.$store.state.currentClass = {};
   },
   computed: {
+    ...inputspaceComputed,
       isActive() {
-          return this.$store.getters.getCurrentClassIndex == this.classIndex ? true : false
+          return this.currentClassIndex == this.classIndex ? true : false
       },
       numSamples() {
         return this.$store.state.classes[this.classIndex - 1].points.length

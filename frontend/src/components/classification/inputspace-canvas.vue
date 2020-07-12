@@ -2,8 +2,7 @@
   <div>
     <v-row>
       <v-col>
-        <p>brush size</p>
-        <v-overflow-btn :items="varianceList" label="brush size" v-model="variance"></v-overflow-btn>
+        <v-select :items="varianceList" label="brush size" v-model="variance"></v-select>
       </v-col>
       <v-col></v-col>
       <v-btn color="red white--text" @click="clearClasses">clear canvas</v-btn>

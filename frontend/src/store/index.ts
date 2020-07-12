@@ -33,7 +33,6 @@ export default new Vuex.Store({
       state.classifiers = classifierData.classifiers
     },
     selectClassifier(state, clfVal) {
-      // state.selectedOptimizer = clf
       state.selectedClassifier = state.classifiers.find(clf => clf.value === clfVal)
     },
     addClass (state) {
@@ -62,11 +61,20 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    loadClassifierData({ commit }) {
+      commit('loadClassifierData')
+    },
+    selectClassifier({ commit }, clfVal) {
+      commit('selectClassifier', clfVal)
+    },
+    chooseKernel({ commit }, kernel) {
+      commit('chooseKernel', kernel)
+    }
   },
   modules: {
   },
   getters: {
-    getCurrentClassIndex(state) {
+    currentClassIndex(state) {
       return state.currentClass!.index
     },
     getClassifierData(state) {

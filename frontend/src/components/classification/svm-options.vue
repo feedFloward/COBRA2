@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { svmSpecs } from '@/store/helpers'
+import { svmSpecsComputed, svmSpecsMethods } from '@/store/helpers'
 
     export default {
         name: 'svmOptions',
@@ -19,8 +19,11 @@ import { svmSpecs } from '@/store/helpers'
                 // specs: ''
             }
         },
+        methods: {
+            ...svmSpecsMethods,
+        },
         computed: {
-            ...svmSpecs,
+            ...svmSpecsComputed,
 
             // das so nochmal überdenken, WENN MÖGLICH IN HELPERS AUSLAGERN!!!!
             specs: {
@@ -28,7 +31,7 @@ import { svmSpecs } from '@/store/helpers'
                     return this.$store.state.selectedClassifier.specs.kernel
                 },
                 set (kernel) {
-                    this.$store.commit('chooseKernel', kernel)
+                    this.chooseKernel(kernel)
                 }
             }
         }

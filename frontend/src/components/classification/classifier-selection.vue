@@ -9,21 +9,26 @@
 </template>
 
 <script>
+import { classifierSelectionMethods, classifierSelectionComputed } from '@/store/helpers'
     export default {
         name: "classifierSelection",
         data() {
             return {
-                classifiers: [],
                 selectedClassifier: {}
             }
         },
+        methods: {
+            ...classifierSelectionMethods,
+        },
+        computed: {
+            ...classifierSelectionComputed,
+        },
         created () {
-            this.$store.commit('loadClassifierData')
-            this.classifiers = this.$store.state.classifiers
+            this.loadClassifierData()
         },
         watch: {
             selectedClassifier() {
-                this.$store.commit('selectClassifier', this.selectedClassifier)
+                this.selectClassifier(this.selectedClassifier)
             }
         },
     }
