@@ -12,7 +12,9 @@ const trainRequest = async function(data: Object, inputspace: [number, number], 
             inputspace: inputspace,
             model: model
         }
-    ))
+    )).catch(error => {
+        throw new Error(`COBRA api service ${error}`)
+    })
     return response.data
 };
 

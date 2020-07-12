@@ -24,6 +24,9 @@
         </v-col>
       </v-row>
     </v-container>
+    <v-overlay :value="overlayLoading">
+      
+    </v-overlay>
   </div>
 </template>
 
@@ -34,6 +37,7 @@ import classifierSelection from "@/components/classification/classifier-selectio
 import svmOptions from "@/components/classification/svm-options";
 import { mapState } from 'vuex';
 import { data } from '@/shared';
+import axios from 'axios';
 
 export default {
   name: "Classification",
@@ -45,6 +49,7 @@ export default {
   },
   data() {
     return {
+      overlayLoading: false,
     };
   },
 methods: {
@@ -62,5 +67,22 @@ methods: {
       inputspace: state => state.inputspace,
     })
   },
+created() {
+  axios.interceptors.request.use((config) => {
+    this.overlayLoading = true
+    return config;
+  }, (error) => {
+    this.overlayLoading = false
+    return Promise.reject(error);
+  });
+
+  axios.interceptors.response.use((response) => {
+    this.overlayLoading = false
+    return response;
+  }, (error) => {
+    this.overlayLoading = false
+    return Promise.reject(error);
+  });
+}
 };
 </script>
