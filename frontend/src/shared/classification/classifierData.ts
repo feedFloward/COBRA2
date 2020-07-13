@@ -14,6 +14,13 @@ const classifiers = [
         text: 'neural net',
         value: 'nn'
     },
+    {
+        text: 'random forest',
+        value: 'random_forest',
+        specs: {
+
+        }
+    }
 ]
 
 const svmSpecs = {

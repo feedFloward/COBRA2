@@ -1,4 +1,10 @@
 from . import SvmWrapper
+from . import RandomForestWrapper
+
+switcher = {
+    'svm': SvmWrapper,
+    'random_forest': RandomForestWrapper
+}
 
 def prepare(func, *args, **kwargs):
     def pass_specs(model, *args, **kwargs):
@@ -12,7 +18,6 @@ def select_model(value, specs, *args, **kwargs):
     '''
     returns a classifier
     '''
-    switcher = {
-        'svm': SvmWrapper(*args, **specs, **kwargs)
-    }
-    return switcher.get(value)
+
+    model = switcher.get(value)
+    return model(*args, **specs, **kwargs)
