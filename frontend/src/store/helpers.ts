@@ -11,6 +11,11 @@ export const svmSpecsMethods = {
         'chooseKernel'
     ])
 }
+export const randomForestMethods = {
+    ...mapActions([
+        'rfChooseNumEst'
+    ])
+}
 
 export const inputspaceComputed = {
     ...mapGetters([

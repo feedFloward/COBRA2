@@ -18,6 +18,7 @@
         </v-col>
         <v-col>
           <svmOptions v-if="selectedClassifier.value == 'svm'"></svmOptions>
+          <randomForestOptions v-else-if="selectedClassifier.value == 'random_forest'"/>
         </v-col>
         <v-col>
           <v-btn @click="train" color="green white--text">train!</v-btn>
@@ -35,6 +36,7 @@ import inputspaceCanvas from "@/components/classification/inputspace-canvas";
 import classDefinition from "@/components/classification/class-definition";
 import classifierSelection from "@/components/classification/classifier-selection";
 import svmOptions from "@/components/classification/svm-options";
+import randomForestOptions from "@/components/classification/random-forest-options";
 import { mapState } from 'vuex';
 import { data } from '@/shared';
 import axios from 'axios';
@@ -46,6 +48,7 @@ export default {
     classDefinition,
     classifierSelection,
     svmOptions,
+    randomForestOptions,
   },
   data() {
     return {

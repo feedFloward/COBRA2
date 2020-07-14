@@ -58,6 +58,10 @@ export default new Vuex.Store({
     },
     chooseKernel(state, kernel) {
       state.selectedClassifier!.specs.kernel = kernel
+    },
+
+    rfChooseNumEst(state, numEstimators) {
+      state.selectedClassifier!.specs.number_estimators = numEstimators
     }
   },
   actions: {
@@ -69,6 +73,10 @@ export default new Vuex.Store({
     },
     chooseKernel({ commit }, kernel) {
       commit('chooseKernel', kernel)
+    },
+
+    rfChooseNumEst({ commit }, numEstimators) {
+      commit('rfChooseNumEst', numEstimators)
     }
   },
   modules: {
