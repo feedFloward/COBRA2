@@ -5,7 +5,7 @@
         width="150"
         height="150"
         :color="color"
-        class="text-center ma-2"
+        class="text-center ma-4"
         :class="isActive? 'darken-5' : 'lighten-5'"
         :elevation="isActive? 24 : 3"
         >

@@ -26,7 +26,8 @@ export default new Vuex.Store({
     selectedClassifier: {} as clfObject | undefined,
     inputspace : inputspace,
     modelSpecData: classifierData.modelSpecData,
-    clfResponse: {} as ClfResponse
+    clfResponse: {} as ClfResponse,
+    trainingSpecs: classifierData.trainingSpecs
   },
   mutations: {
     loadClassifierData(state) {
@@ -56,6 +57,11 @@ export default new Vuex.Store({
     removeAllClasses(state) {
       state.classes = []
     },
+
+    setTrainTestSplit(state, trainTestSplit) {
+      state.trainingSpecs.test_size = trainTestSplit
+    },
+
     chooseKernel(state, kernel) {
       state.selectedClassifier!.specs.kernel = kernel
     },
@@ -71,6 +77,11 @@ export default new Vuex.Store({
     selectClassifier({ commit }, clfVal) {
       commit('selectClassifier', clfVal)
     },
+
+    setTrainTestSplit({ commit }, trainTestSplit) {
+      commit('setTrainTestSplit', trainTestSplit)
+    },
+
     chooseKernel({ commit }, kernel) {
       commit('chooseKernel', kernel)
     },

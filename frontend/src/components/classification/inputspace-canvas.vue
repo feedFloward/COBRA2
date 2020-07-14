@@ -2,10 +2,11 @@
   <div>
     <v-row>
       <v-col>
-        <v-select :items="varianceList" label="brush size" v-model="variance"></v-select>
+        <v-select :items="varianceList" label="brush size" v-model="variance" dense></v-select>
       </v-col>
-      <v-col></v-col>
-      <v-btn color="red white--text" @click="clearClasses">clear canvas</v-btn>
+      <v-col>
+        <v-btn color="red white--text" @click="clearClasses" dense>clear canvas</v-btn>
+      </v-col>
       <v-col></v-col>
     </v-row>
     <v-row>
@@ -26,8 +27,7 @@
 
 <script>
 import * as tf from "@tensorflow/tfjs";
-import { colorMap } from '@/shared';
-
+import { colorMap } from "@/shared";
 
 export default {
   name: "inputspaceCanvas",
@@ -89,18 +89,18 @@ export default {
     },
 
     clearClasses() {
-        this.$store.commit('removeAllClasses')
+      this.$store.commit("removeAllClasses");
     },
 
     drawPredictions() {
       this.redrawCanvas();
       this.context.globalAlpha = 0.1;
-      let predictions = this.$store.state.clfResponse.Z
-      for (let i= 0; i < predictions.length; i++) {
-        for (let j= 0; j < predictions[i].length; j++) {
+      let predictions = this.$store.state.clfResponse.Z;
+      for (let i = 0; i < predictions.length; i++) {
+        for (let j = 0; j < predictions[i].length; j++) {
           let prediction = predictions[i][j];
-          let color = colorMap[prediction]
-          this.drawSinglePoint(j, i, 1, color)
+          let color = colorMap[prediction];
+          this.drawSinglePoint(j, i, 1, color);
         }
       }
     }

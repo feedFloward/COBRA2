@@ -35,7 +35,12 @@ const modelSpecData = {
     svmSpecs
 }
 
+const trainingSpecs = {
+    test_size: 0.1
+}
+
 export const classifierData = {
     classifiers,
-    modelSpecData
+    modelSpecData,
+    trainingSpecs
 }

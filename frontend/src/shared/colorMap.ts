@@ -7,5 +7,6 @@ export const colorMap: dict = {
     2: 'green',
     3: 'blue',
     4: 'orange',
-    5: 'purple'
+    5: 'purple',
+    6: 'cyan'
 }

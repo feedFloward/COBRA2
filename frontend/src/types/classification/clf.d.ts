@@ -10,6 +10,10 @@ interface ClfResponse {
     Z: number[]
 }
 
+interface TrainingSpecs {
+    test_size: number
+}
+
 interface SvmSpecs {
     kernel: string[]
 }
@@ -24,6 +28,7 @@ export interface ClfState {
     classifiers: clfObject[],
     selectedClassifier: clfObject | undefined,
     inputspace : Object,
-    modelSpecData: ModelSpecs
-    clfResponse: ClfResponse
+    modelSpecData: ModelSpecs,
+    clfResponse: ClfResponse,
+    trainingSpecs: TrainingSpecs
 }

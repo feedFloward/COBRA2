@@ -34,3 +34,9 @@ export const classifierSelectionComputed = {
         classifiers: (state) => (state as ClfState).classifiers
     })
 }
+
+export const classDefinitionComputed = {
+    ...mapActions([
+        'setTrainTestSplit'
+    ])
+}

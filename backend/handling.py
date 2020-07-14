@@ -11,4 +11,5 @@ def handle_request(request_body):
     model = select_model(**parsed_body)
     model.fit()
     model.predict_inputspace()
+    model.evaluate()
     return json.dumps(answer_dict.response)

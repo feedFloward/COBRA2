@@ -3,7 +3,16 @@
     <v-container fluid>
       <nav>
         <ul>
-          <router-link to="/Classification">Classification</router-link>
+          <v-row>
+            <v-col>
+              <v-card to="/Classification" max-width="344">
+              <v-img src="@/assets/Classification.png" height="200px"></v-img>
+              Classification
+              </v-card>
+            </v-col>
+            <v-col>Regression</v-col>
+            <v-col>Clustering</v-col>
+          </v-row>
         </ul>
       </nav>
     </v-container>
@@ -11,20 +20,13 @@
 </template>
 
 <script>
-
-
 export default {
-  components: {
-
-  },
+  components: {},
   data() {
-    return {
-    }
+    return {};
   },
   methods: {
-    addClass() {
-
-    }
-  },
+    addClass() {}
+  }
 };
 </script>

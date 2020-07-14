@@ -10,8 +10,8 @@ switcher = {
 # ähnlich wie select_model eine function die train_model oder so heißt und DA dann das answer_dict als decorator rein...
 
 def prepare(func, *args, **kwargs):
-    def pass_specs(model, *args, **kwargs):
-        selected_model = func(*args, **model, **kwargs)
+    def pass_specs(model, train_specs, *args, **kwargs):
+        selected_model = func(*args, **model, **train_specs, **kwargs)
         return selected_model
     return pass_specs
 

@@ -6,9 +6,7 @@
           <classDefinition :classes="classes"></classDefinition>
         </v-col>
         <v-col>
-          <v-row>
             <inputspaceCanvas ref="inputspaceCanvas"></inputspaceCanvas>
-          </v-row>
         </v-col>
         <v-col></v-col>
       </v-row>
@@ -58,7 +56,7 @@ export default {
 methods: {
   async train() {
     //wie zeichnen?
-    let answer = await data.trainRequest(this.classes, this.inputspace, this.selectedClassifier)
+    let answer = await data.trainRequest(this.classes, this.inputspace, this.selectedClassifier, this.trainingSpecs)
     this.$store.state.clfResponse = answer
     this.$refs.inputspaceCanvas.drawPredictions()
   }
@@ -68,6 +66,7 @@ methods: {
       classes: state => state.classes,
       selectedClassifier: state => state.selectedClassifier,
       inputspace: state => state.inputspace,
+      trainingSpecs: state => state.trainingSpecs
     })
   },
 created() {
