@@ -3,7 +3,10 @@
 const classifiers = [
     {
         text: 'logistic regression',
-        value: 'logistic'
+        value: 'logistic',
+        specs: {
+            
+        }
     },
     {
         text: 'svm',

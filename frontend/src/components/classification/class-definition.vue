@@ -9,7 +9,7 @@
     <v-row class="ma-2">
       <v-col>
         <v-card height="400">
-          <v-item-group multiple="false">
+          <v-item-group>
             <!-- multiple="false" mandatory -->
             <v-row wrap>
               <classCard

@@ -1,9 +1,11 @@
 from . import SvmWrapper
 from . import RandomForestWrapper
+from . import LogisticRegressionWrapper
 
 switcher = {
     'svm': SvmWrapper,
-    'random_forest': RandomForestWrapper
+    'random_forest': RandomForestWrapper,
+    'logistic': LogisticRegressionWrapper,
 }
 
 # bigge Idee zum restrukturieren:
